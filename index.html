@@ -1,0 +1,748 @@
+﻿<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РљРѕРјРїР»РµРєСЃРЅС‹Р№ РЅР°СѓС‡РЅРѕ-РєР»РёРЅРёС‡РµСЃРєРёР№ РѕС‚С‡РµС‚: Р РµР°Р±РёР»РёС‚Р°С†РёСЏ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { border-bottom-color: #2563eb; color: #1e40af; font-weight: 600; background-color: #eff6ff; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-file-medical text-blue-600 text-2xl mr-3"></i>
+                    <span class="font-bold text-lg text-slate-900 hidden sm:block">RehabTracker Pro</span>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center text-sm font-medium text-slate-600">
+                    <a href="#profile" class="hover:text-blue-600 transition">РџСЂРѕС„РёР»СЊ</a>
+                    <a href="#stats" class="hover:text-blue-600 transition">РЎС‚Р°С‚РёСЃС‚РёРєР° 2025</a>
+                    <a href="#pathology" class="hover:text-blue-600 transition">РџР°С‚РѕР»РѕРіРёСЏ</a>
+                    <a href="#monitoring" class="hover:text-blue-600 transition">РњРѕРЅРёС‚РѕСЂРёРЅРі</a>
+                    <a href="#nutrition" class="hover:text-blue-600 transition">РќСѓС‚СЂРёС†РµРІС‚РёРєР°</a>
+                    <a href="#breathing" class="hover:text-blue-600 transition">Р”С‹С…Р°РЅРёРµ</a>
+                    <button onclick="window.setupNotifications()" class="ml-4 bg-teal-600 text-white px-4 py-2 rounded-full hover:bg-teal-700 transition"><i class="fa-regular fa-bell mr-2"></i>Р’РєР»СЋС‡РёС‚СЊ РЈРІРµРґРѕРјР»РµРЅРёСЏ</button>
+                    <a href="#plan" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition">РњР°РєСЂРѕС†РёРєР»</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-blue-600">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 shadow-lg">
+            <a href="#profile" class="block py-2 text-slate-600">РџСЂРѕС„РёР»СЊ</a>
+            <a href="#stats" class="block py-2 text-slate-600">РЎС‚Р°С‚РёСЃС‚РёРєР°</a>
+            <a href="#pathology" class="block py-2 text-slate-600">РџР°С‚РѕР»РѕРіРёСЏ</a>
+            <a href="#breathing" class="block py-2 text-slate-600">Р”С‹С…Р°РЅРёРµ</a>
+            <button onclick="window.setupNotifications()" class="ml-4 bg-teal-600 text-white px-4 py-2 rounded-full hover:bg-teal-700 transition"><i class="fa-regular fa-bell mr-2"></i>Р’РєР»СЋС‡РёС‚СЊ РЈРІРµРґРѕРјР»РµРЅРёСЏ</button>
+                    <a href="#plan" class="block py-2 text-blue-600 font-bold">РњР°РєСЂРѕС†РёРєР»</a>
+        </div>
+    </nav>
+
+    <!-- Header / Hero -->
+    <header class="bg-white border-b border-slate-200 py-12 lg:py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4 border border-blue-200">
+                РљРѕРјРїР»РµРєСЃРЅС‹Р№ РЅР°СѓС‡РЅРѕ-РєР»РёРЅРёС‡РµСЃРєРёР№ РѕС‚С‡РµС‚
+            </div>
+            <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
+                РЎС‚СЂР°С‚РµРіРёСЏ РјСѓР»СЊС‚РёРґРёСЃС†РёРїР»РёРЅР°СЂРЅРѕР№ СЂРµР°Р±РёР»РёС‚Р°С†РёРё Рё СЂРµРёРЅС‚РµРіСЂР°С†РёРё РІ С‚СЂРµРЅРёСЂРѕРІРѕС‡РЅС‹Р№ РїСЂРѕС†РµСЃСЃ
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                РџРѕСЃР»Рµ РїРµСЂРµРЅРµСЃРµРЅРЅРѕР№ Р°С‚РёРїРёС‡РЅРѕР№ РїРЅРµРІРјРѕРЅРёРё Рё С„С‚РѕСЂС…РёРЅРѕР»РѕРЅ-РёРЅРґСѓС†РёСЂРѕРІР°РЅРЅРѕР№ С‚РѕРєСЃРёС‡РЅРѕСЃС‚Рё.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- Section 1: Intro & Profile -->
+        <section id="profile" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-user-injured text-blue-500 mr-3"></i> РџСЂРѕС„РёР»СЊ СЃРїРѕСЂС‚СЃРјРµРЅР°
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
+                <p class="text-slate-700 leading-relaxed mb-6">
+                    РќР°СЃС‚РѕСЏС‰РёР№ Р°РЅР°Р»РёС‚РёС‡РµСЃРєРёР№ РѕС‚С‡РµС‚ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ СЃРѕР±РѕР№ РёСЃС‡РµСЂРїС‹РІР°СЋС‰РёР№, РґРµС‚Р°Р»РёР·РёСЂРѕРІР°РЅРЅС‹Р№ СЂР°Р·Р±РѕСЂ РєР»РёРЅРёС‡РµСЃРєРѕР№ Рё СЃРїРѕСЂС‚РёРІРЅРѕР№ С‚СЂР°РµРєС‚РѕСЂРёРё <strong>32-Р»РµС‚РЅРµРіРѕ РјСѓР¶С‡РёРЅС‹</strong>, СЏРІР»СЏСЋС‰РµРіРѕСЃСЏ Р±РµРіСѓРЅРѕРј-Р»СЋР±РёС‚РµР»РµРј СЃ 4-Р»РµС‚РЅРёРј СЃС‚Р°Р¶РµРј СЂРµРіСѓР»СЏСЂРЅС‹С… С‚СЂРµРЅРёСЂРѕРІРѕРє РІ С†РёРєР»РёС‡РµСЃРєРёС… РІРёРґР°С… СЃРїРѕСЂС‚Р°.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex items-start">
+                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
+                            <i class="fa-solid fa-medal text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-900">РџРѕР»СѓРјР°СЂР°С„РѕРЅ (4 С„РёРЅРёС€Р°)</h4>
+                            <p class="text-sm text-slate-500">Р›РёС‡РЅС‹Р№ СЂРµРєРѕСЂРґ: <span class="font-bold text-slate-800">1:49:00</span> (~5:10 РјРёРЅ/РєРј)</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex items-start">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4 text-purple-600">
+                            <i class="fa-solid fa-route text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-900">РњР°СЂР°С„РѕРЅ (2 С„РёРЅРёС€Р°)</h4>
+                            <p class="text-sm text-slate-500">Р›РёС‡РЅС‹Р№ СЂРµРєРѕСЂРґ: <span class="font-bold text-slate-800">5:00:00</span> (~7:06 РјРёРЅ/РєРј)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 2025 Stats -->
+        <section id="stats" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-chart-line text-blue-500 mr-3"></i> Р РµС‚СЂРѕСЃРїРµРєС‚РёРІРЅС‹Р№ Р°РЅР°Р»РёР· (2025 РіРѕРґ)
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Running Stats -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-4 text-slate-100 opacity-20 text-6xl"><i class="fa-solid fa-person-running"></i></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">Р‘РµРіРѕРІРѕР№ РѕР±СЉРµРј</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Р”РёСЃС‚Р°РЅС†РёСЏ</p>
+                                <p class="text-2xl font-extrabold text-blue-600">980.66 <span class="text-base font-normal">РєРј</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">РўСЂРµРЅРёСЂРѕРІРєРё</p>
+                                <p class="text-2xl font-extrabold text-slate-800">123</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ</p>
+                                <p class="text-lg font-bold text-slate-700">112.2 С‡</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">РЎСЂРµРґРЅРёР№ С‚РµРјРї</p>
+                                <p class="text-lg font-bold text-slate-700">6:52 /РєРј</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-600 mt-4 bg-slate-50 p-2 rounded">РџРёРє РѕР±СЉРµРјРѕРІ: РјР°Р№ (189 РєРј) Рё РёСЋРЅСЊ (180 РєРј).</p>
+                    </div>
+                </div>
+                <!-- Cycling Stats -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-4 text-slate-100 opacity-20 text-6xl"><i class="fa-solid fa-person-biking"></i></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">Р’РµР»РѕСЃРёРїРµРґРЅС‹Р№ РѕР±СЉРµРј</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Р”РёСЃС‚Р°РЅС†РёСЏ</p>
+                                <p class="text-2xl font-extrabold text-teal-600">565.72 <span class="text-base font-normal">РєРј</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">РўСЂРµРЅРёСЂРѕРІРєРё</p>
+                                <p class="text-2xl font-extrabold text-slate-800">25</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ</p>
+                                <p class="text-lg font-bold text-slate-700">30.8 С‡</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">РЎСЂ. СЃРєРѕСЂРѕСЃС‚СЊ</p>
+                                <p class="text-lg font-bold text-slate-700">18.36 РєРј/С‡</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-600 mt-4 bg-slate-50 p-2 rounded">РџРёРє РЅР°РєР°С‚Р°: РѕРєС‚СЏР±СЂСЊ (336 РєРј).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg text-sm text-slate-700">
+                <i class="fa-solid fa-circle-info mr-2 text-blue-600"></i> <strong>Р РµР·СЋРјРµ:</strong> РЎС„РѕСЂРјРёСЂРѕРІР°РЅР° СѓРІРµСЂРµРЅРЅР°СЏ Р»СЋР±РёС‚РµР»СЊСЃРєР°СЏ Р°СЌСЂРѕР±РЅР°СЏ Р±Р°Р·Р°. РќР°Р»РёС‡РёРµ РѕРїС‹С‚Р° РІРµР»РѕСЃРёРїРµРґРЅС‹С… С‚СЂРµРЅРёСЂРѕРІРѕРє РїРѕР·РІРѕР»СЏРµС‚ Р±РµР·РѕРїР°СЃРЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєСЂРѕСЃСЃ-С‚СЂРµРЅРёРЅРі РєР°Рє РёРЅСЃС‚СЂСѓРјРµРЅС‚ РїРѕРґРґРµСЂР¶Р°РЅРёСЏ РєР°СЂРґРёРѕРІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё Р±РµР· СѓРґР°СЂРЅРѕР№ РЅР°РіСЂСѓР·РєРё.
+            </div>
+        </section>
+
+        <!-- Section 3: Pathophysiology (Critical) -->
+        <section id="pathology" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-triangle-exclamation text-red-500 mr-3"></i> РџР°С‚РѕС„РёР·РёРѕР»РѕРіРёС‡РµСЃРєРёРµ Р±Р°СЂСЊРµСЂС‹
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- Respiratory -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 relative overflow-hidden">
+                    <div class="absolute w-2 h-full bg-teal-500 left-0 top-0"></div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center">
+                        <i class="fa-solid fa-lungs text-teal-500 mr-2"></i> Р РµСЃРїРёСЂР°С‚РѕСЂРЅС‹Р№ СЃС‚Р°С‚СѓСЃ: Р¤РёР±СЂРѕР°С‚РµР»РµРєС‚Р°Р·
+                    </h3>
+                    <p class="text-slate-700 mb-4">
+                        РџРѕСЃР»РµРґСЃС‚РІРёСЏ РєРѕ-РёРЅС„РµРєС†РёРё Mycoplasma pneumoniae Рё Chlamydophila pneumoniae РїСЂРёРІРµР»Рё Рє СЃС‚СЂСѓРєС‚СѓСЂРЅС‹Рј РїРµСЂРµСЃС‚СЂРѕР№РєР°Рј (РњРЎРљРў: СЃРёРјРїС‚РѕРј В«РјР°С‚РѕРІРѕРіРѕ СЃС‚РµРєР»Р°В», С„РёР±СЂРѕР°С‚РµР»РµРєС‚Р°Р· S7, S9, S10 РїСЂР°РІРѕРіРѕ Р»РµРіРєРѕРіРѕ).
+                    </p>
+                    <div class="bg-slate-50 p-4 rounded border border-slate-200 flex items-center justify-between flex-wrap gap-4">
+                        <div>
+                            <p class="text-sm text-slate-500">Р¤Р–Р•Р› (РЎРїРёСЂРѕРјРµС‚СЂРёСЏ РѕС‚ 01.04.2026)</p>
+                            <p class="text-2xl font-bold text-slate-800">4.43 Р» <span class="text-sm text-red-500 font-normal">(72% РѕС‚ РЅРѕСЂРјС‹ 6.13 Р»)</span></p>
+                        </div>
+                        <div class="text-sm text-slate-600 max-w-sm">
+                            <i class="fa-solid fa-circle-exclamation text-amber-500"></i> <strong>Р РёСЃРє:</strong> РЎРЅРёР¶РµРЅРёРµ Р¤Р–Р•Р› РЅР° 28% РІРµРґРµС‚ Рє СЂР°РЅРЅРµРјСѓ РЅР°РєРѕРїР»РµРЅРёСЋ Р»Р°РєС‚Р°С‚Р° Рё С‚СЏР¶РµР»РѕР№ С‚РєР°РЅРµРІРѕР№ РіРёРїРѕРєСЃРёРё РЅР° РІС‹СЃРѕРєРёС… РїСѓР»СЊСЃРѕРІС‹С… Р·РѕРЅР°С….
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tendons / FQAD (CRITICAL WARNING) -->
+                <div class="bg-red-50 rounded-xl shadow-sm border border-red-200 p-6 relative overflow-hidden">
+                    <div class="absolute w-2 h-full bg-red-600 left-0 top-0"></div>
+                    <h3 class="text-xl font-bold text-red-800 mb-3 flex items-center">
+                        <i class="fa-solid fa-biohazard mr-2"></i> РЎРєРµР»РµС‚РЅРѕ-РјС‹С€РµС‡РЅС‹Р№ СЃС‚Р°С‚СѓСЃ (FQAD)
+                    </h3>
+                    <p class="text-red-900 font-semibold mb-4 border-b border-red-200 pb-3">
+                        РљР»СЋС‡РµРІР°СЏ СѓРіСЂРѕР·Р°: 10-РґРЅРµРІРЅС‹Р№ РєСѓСЂСЃ Р°РЅС‚РёР±РёРѕС‚РёРєР° Р›РµРІРѕС„Р»РѕРєСЃР°С†РёРЅ (С„С‚РѕСЂС…РёРЅРѕР»РѕРЅС‹). Р”РѕРєР°Р·Р°РЅРЅР°СЏ РІС‹СЃРѕРєРѕСЃРїРµС†РёС„РёС‡РЅР°СЏ С‚РѕРєСЃРёС‡РЅРѕСЃС‚СЊ Рє РєРѕР»Р»Р°РіРµРЅСѓ I С‚РёРїР° (Р°С…РёР»Р»РѕРІРѕ СЃСѓС…РѕР¶РёР»РёРµ).
+                    </p>
+                    <ul class="space-y-3 text-red-800 text-sm">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-skull-crossbones mt-1 mr-3 text-red-600"></i>
+                            <span><strong>Р“РёРїРµСЂСЌРєСЃРїСЂРµСЃСЃРёСЏ РњРњРџ:</strong> Р¤РµСЂРјРµРЅС‚С‹ Р±СѓРєРІР°Р»СЊРЅРѕ СЂР°СЃС‚РІРѕСЂСЏСЋС‚ СЃС‚СЂСѓРєС‚СѓСЂРЅС‹Р№ РєР°СЂРєР°СЃ СЃСѓС…РѕР¶РёР»РёСЏ РёР·РЅСѓС‚СЂРё.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-skull-crossbones mt-1 mr-3 text-red-600"></i>
+                            <span><strong>РњРёС‚РѕС…РѕРЅРґСЂРёР°Р»СЊРЅР°СЏ РґРёСЃС„СѓРЅРєС†РёСЏ:</strong> Р­РЅРµСЂРіРµС‚РёС‡РµСЃРєРёР№ РєСЂРёР·РёСЃ Рё РјР°СЃСЃРѕРІР°СЏ РіРёР±РµР»СЊ РєР»РµС‚РѕРє (Р°РїРѕРїС‚РѕР·). РЎСѓС…РѕР¶РёР»РёРµ С‚РµСЂСЏРµС‚ СЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ Рє РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЋ РјРёРєСЂРѕС‚СЂР°РІРј.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-skull-crossbones mt-1 mr-3 text-red-600"></i>
+                            <span><strong>Р”РµС„РёС†РёС‚ РјР°РіРЅРёСЏ:</strong> РҐРµР»Р°С‚РёСЂРѕРІР°РЅРёРµ РёРѕРЅРѕРІ РјР°РіРЅРёСЏ РїСЂРёРІРѕРґРёС‚ Рє РІС‹СЂР°Р±РѕС‚РєРµ СЂС‹С…Р»РѕРіРѕ, РЅРµРїРѕР»РЅРѕС†РµРЅРЅРѕРіРѕ РєРѕР»Р»Р°РіРµРЅР°.</span>
+                        </li>
+                    </ul>
+                    <div class="mt-5 bg-white bg-opacity-60 p-3 rounded-lg border border-red-300 text-center font-bold text-red-900">
+                        РћРєРЅРѕ РїРёРєРѕРІРѕРіРѕ СЂРёСЃРєР° СЃРїРѕРЅС‚Р°РЅРЅРѕРіРѕ СЂР°Р·СЂС‹РІР° Р°С…РёР»Р»РѕРІР° СЃСѓС…РѕР¶РёР»РёСЏ: 6 РњР•РЎРЇР¦Р•Р’ РїРѕСЃР»Рµ РѕС‚РјРµРЅС‹ РїСЂРµРїР°СЂР°С‚Р° (РґРѕ РєРѕРЅС†Р° СЃРµРЅС‚СЏР±СЂСЏ 2026).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Monitoring Protocol -->
+        <section id="monitoring" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-microscope text-blue-500 mr-3"></i> РџСЂРѕС‚РѕРєРѕР» РјРѕРЅРёС‚РѕСЂРёРЅРіР°
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Mandatory -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2"><i class="fa-solid fa-check-double text-green-500 mr-2"></i> РћР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ СЃРєСЂРёРЅРёРЅРі</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-slate-800">РЈР—Р Р°С…РёР»Р»РѕРІС‹С… СЃСѓС…РѕР¶РёР»РёР№ (СЃ РґРѕРїРїР»РµСЂРѕРј)</div>
+                            <div class="text-slate-600 mt-1">Р¤Р°Р·Р° 1 (Р±Р°Р·Р°) Рё РєРѕРЅРµС† 8-Р№ РЅРµРґРµР»Рё. РСЃРєР»СЋС‡РёС‚СЊ РіРёРїРѕСЌС…РѕРіРµРЅРЅС‹Рµ Р·РѕРЅС‹ Рё РєСЂРѕРІРѕС‚РѕРє.</div>
+                        </li>
+                        <li class="p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-slate-800">РњР°РіРЅРёР№ РІ СЌСЂРёС‚СЂРѕС†РёС‚Р°С… (RBC)</div>
+                            <div class="text-slate-600 mt-1">Р’ Р¤Р°Р·Рµ 1. Р¦РµР»РµРІРѕР№ СѓСЂРѕРІРµРЅСЊ >5.5 РјРі/РґР». (РЎС‹РІРѕСЂРѕС‚РѕС‡РЅС‹Р№ РЅРµРёРЅС„РѕСЂРјР°С‚РёРІРµРЅ).</div>
+                        </li>
+                        <li class="p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-slate-800">РћРђРљ, РЎР Р‘ (<5 РјРі/Р»), РђР›Рў, РђРЎРў, РљСЂРµР°С‚РёРЅРёРЅ</div>
+                            <div class="text-slate-600 mt-1">Р’ РЅР°С‡Р°Р»Рµ Р¤Р°Р·С‹ 1 РґР»СЏ РєРѕРЅС‚СЂРѕР»СЏ РІРѕСЃРїР°Р»РµРЅРёСЏ Рё С„СѓРЅРєС†РёРё РѕСЂРіР°РЅРѕРІ.</div>
+                        </li>
+                        <li class="p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-slate-800">РЎРїРёСЂРѕРјРµС‚СЂРёСЏ (Р¤Р’Р”) СЃ Р±СЂРѕРЅС…РѕРґРёР»Р°С‚Р°С‚РѕСЂРѕРј</div>
+                            <div class="text-slate-600 mt-1">РљРѕРЅРµС† 4-Р№ Рё 12-Р№ РЅРµРґРµР»Рё. Р¦РµР»СЊ: РІРѕР·РІСЂР°С‚ Р¤Р–Р•Р› >85-90%.</div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Red Flags -->
+                <div class="bg-white p-6 rounded-xl border border-amber-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2"><i class="fa-solid fa-flag text-amber-500 mr-2"></i> РЎРёРјРїС‚РѕРјР°С‚РёС‡РµСЃРєРёРµ РёСЃСЃР»РµРґРѕРІР°РЅРёСЏ (В«РљСЂР°СЃРЅС‹Рµ С„Р»Р°РіРёВ»)</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="p-3 bg-amber-50 rounded border border-amber-100">
+                            <div class="font-bold text-slate-800">РњР Рў Р°С…РёР»Р»РѕРІР° СЃСѓС…РѕР¶РёР»РёСЏ</div>
+                            <div class="text-slate-700 mt-1"><strong>РџРѕРєР°Р·Р°РЅРёСЏ:</strong> РћСЃС‚СЂР°СЏ Р±РѕР»СЊ, СЃС‚РѕР№РєРёР№ СѓС‚СЂРµРЅРЅРёР№ РѕС‚РµРє (РЅРµ РїСЂРѕС…РѕРґРёС‚ РїРѕСЃР»Рµ СЂР°Р·РјРёРЅРєРё), РєСЂРµРїРёС‚Р°С†РёСЏ ("С…СЂСѓСЃС‚").</div>
+                        </li>
+                        <li class="p-3 bg-amber-50 rounded border border-amber-100">
+                            <div class="font-bold text-slate-800">РќРёР·РєРѕРґРѕР·РѕРІР°СЏ РљРў Р»РµРіРєРёС…</div>
+                            <div class="text-slate-700 mt-1"><strong>РџРѕРєР°Р·Р°РЅРёСЏ:</strong> Р’РѕР·РІСЂР°С‚ Р»РёС…РѕСЂР°РґРєРё, Р±РѕР»СЊ РІ РіСЂСѓРґРё РЅР° РіР»СѓР±РѕРєРѕРј РІРґРѕС…Рµ, РІС‹РґРµР»РµРЅРёРµ РіРЅРѕР№РЅРѕР№ РјРѕРєСЂРѕС‚С‹.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Nutrition -->
+        <section id="nutrition" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-pills text-blue-500 mr-3"></i> РќСѓС‚СЂРёС†РµРІС‚РёС‡РµСЃРєР°СЏ РїРѕРґРґРµСЂР¶РєР°
+            </h2>
+            <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+                <table class="min-w-full bg-white text-sm text-left">
+                    <thead class="bg-slate-100 text-slate-700 uppercase font-semibold">
+                        <tr>
+                            <th class="px-6 py-4 border-b">РђРіРµРЅС‚</th>
+                            <th class="px-6 py-4 border-b">Р”РѕР·РёСЂРѕРІРєР° / РџСЂРѕС‚РѕРєРѕР»</th>
+                            <th class="px-6 py-4 border-b hidden md:table-cell">РћР±РѕСЃРЅРѕРІР°РЅРёРµ (FQAD)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800">РњР°РіРЅРёР№</td>
+                            <td class="px-6 py-4">400-600 РјРі/СЃСѓС‚РєРё (Р±РёСЃРіР»РёС†РёРЅР°С‚/РјР°Р»Р°С‚).</td>
+                            <td class="px-6 py-4 text-slate-600 hidden md:table-cell">РљРѕРјРїРµРЅСЃР°С†РёСЏ РІРЅСѓС‚СЂРёРєР»РµС‚РѕС‡РЅРѕРіРѕ С…РµР»Р°С‚РёСЂРѕРІР°РЅРёСЏ, РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёРµ РѕС‚СЃР»РѕРµРЅРёСЏ С‚РµРЅРѕС†РёС‚РѕРІ.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800">Р’РёС‚ E + РЎРµР»РµРЅ</td>
+                            <td class="px-6 py-4">Vit E: 400 РњР•, РЎРµР»РµРЅ: 200 РјРєРі (3-4 РјРµСЃСЏС†Р°).</td>
+                            <td class="px-6 py-4 text-slate-600 hidden md:table-cell">РЎРёРЅРµСЂРіРёС‡РЅС‹Р№ Р°РЅС‚РёРѕРєСЃРёРґР°РЅС‚. РЎРЅРёР¶Р°РµС‚ РјРёС‚РѕС…РѕРЅРґСЂРёР°Р»СЊРЅС‹Р№ СЃС‚СЂРµСЃСЃ Рё РїР°С‚РѕР»РѕРіРёС‡РµСЃРєСѓСЋ РЅРµРѕРІР°СЃРєСѓР»СЏСЂРёР·Р°С†РёСЋ.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800">Р’РёС‚Р°РјРёРЅ C</td>
+                            <td class="px-6 py-4 bg-amber-50">500-1000 РјРі <strong>СЃС‚СЂРѕРіРѕ Р·Р° 40-60 РјРёРЅ</strong> РґРѕ С‚СЂРµРЅРёСЂРѕРІРєРё.</td>
+                            <td class="px-6 py-4 text-slate-600 hidden md:table-cell">РљРѕС„Р°РєС‚РѕСЂ РїСЂРѕР»РёР»РіРёРґСЂРѕРєСЃРёР»Р°Р·С‹. РќРµРѕР±С…РѕРґРёРј РґР»СЏ СЃС‚Р°Р±РёР»РёР·Р°С†РёРё С‚СЂРѕР№РЅРѕР№ СЃРїРёСЂР°Р»Рё РЅРѕРІРѕРіРѕ РєРѕР»Р»Р°РіРµРЅР°.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800">РљРѕР»Р»Р°РіРµРЅ / Р–РµР»Р°С‚РёРЅ</td>
+                            <td class="px-6 py-4 bg-amber-50">15-20 Рі <strong>СЃРѕРІРјРµСЃС‚РЅРѕ СЃ Р’РёС‚ РЎ</strong> РґРѕ С‚СЂРµРЅРёСЂРѕРІРєРё.</td>
+                            <td class="px-6 py-4 text-slate-600 hidden md:table-cell">РђРґСЂРµСЃРЅРѕРµ РѕР±РµСЃРїРµС‡РµРЅРёРµ РїРѕРІСЂРµР¶РґРµРЅРЅРѕР№ С‚РєР°РЅРё СЃС‚СЂРѕРёС‚РµР»СЊРЅС‹Рј РјР°С‚РµСЂРёР°Р»РѕРј РІ РјРѕРјРµРЅС‚ РјРµС…Р°РЅРёС‡РµСЃРєРѕР№ СЃС‚РёРјСѓР»СЏС†РёРё.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: Breathing Exercises -->
+        <section id="breathing" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-wind text-blue-500 mr-3"></i> Р”С‹С…Р°С‚РµР»СЊРЅР°СЏ РіРёРјРЅР°СЃС‚РёРєР°
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Video 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="aspect-video w-full bg-slate-100 relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/9jpchJcKivk" title="Р”РёР°С„СЂР°РіРјР°Р»СЊРЅРѕРµ РґС‹С…Р°РЅРёРµ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2">Р”РёР°С„СЂР°РіРјР°Р»СЊРЅРѕРµ РґС‹С…Р°РЅРёРµ (РґС‹С…Р°РЅРёРµ Р¶РёРІРѕС‚РѕРј)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>РўРµС…РЅРёРєР°:</strong> Р›СЏРіС‚Рµ РЅР° СЃРїРёРЅСѓ РёР»Рё СЃСЏРґСЊС‚Рµ РїСЂСЏРјРѕ. РџРѕР»РѕР¶РёС‚Рµ РѕРґРЅСѓ СЂСѓРєСѓ РЅР° РіСЂСѓРґСЊ, РґСЂСѓРіСѓСЋ РЅР° Р¶РёРІРѕС‚ С‡СѓС‚СЊ РЅРёР¶Рµ СЂРµР±РµСЂ. РњРµРґР»РµРЅРЅРѕ РІРґС‹С…Р°Р№С‚Рµ С‡РµСЂРµР· РЅРѕСЃ: СЂСѓРєР° РЅР° Р¶РёРІРѕС‚Рµ РґРѕР»Р¶РЅР° РїРѕРґРЅРёРјР°С‚СЊСЃСЏ (Р¶РёРІРѕС‚ РЅР°РґСѓРІР°РµС‚СЃСЏ), Р° СЂСѓРєР° РЅР° РіСЂСѓРґРё РѕСЃС‚Р°РІР°С‚СЊСЃСЏ РЅРµРїРѕРґРІРёР¶РЅРѕР№. Р’С‹РґС‹С…Р°Р№С‚Рµ РјРµРґР»РµРЅРЅРѕ С‡РµСЂРµР· СЂРѕС‚, РїРѕР·РІРѕР»СЏСЏ Р¶РёРІРѕС‚Сѓ РѕРїСѓСЃС‚РёС‚СЊСЃСЏ. РџРѕРІС‚РѕСЂСЏР№С‚Рµ РїРѕ 5-10 РјРёРЅСѓС‚.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="aspect-video w-full bg-slate-100 relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/LTJTqWcSAC8" title="Р›РѕРєР°Р»РёР·РѕРІР°РЅРЅРѕРµ РґС‹С…Р°РЅРёРµ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2">Р›РѕРєР°Р»РёР·РѕРІР°РЅРЅРѕРµ РґС‹С…Р°РЅРёРµ РґР»СЏ РЅРёР¶РЅРёС… СЂРµР±РµСЂ</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>РўРµС…РЅРёРєР°:</strong> РЎСЏРґСЊС‚Рµ РїСЂСЏРјРѕ. РџР»РѕС‚РЅРѕ РѕР±С…РІР°С‚РёС‚Рµ Р»Р°РґРѕРЅСЏРјРё РЅРёР¶РЅРёРµ СЂРµР±СЂР° РїРѕ Р±РѕРєР°Рј. РџСЂРё РІС‹РґРѕС…Рµ РјСЏРіРєРѕ СЃРґР°РІР»РёРІР°Р№С‚Рµ СЂРµР±СЂР°. РќРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ РїРµСЂРµРґ РЅР°С‡Р°Р»РѕРј РІРґРѕС…Р° СЃРґРµР»Р°Р№С‚Рµ СЂСѓРєР°РјРё РєРѕСЂРѕС‚РєРѕРµ РЅР°Р¶Р°С‚РёРµ РІРЅСѓС‚СЂСЊ Рё РІРЅРёР·, РїРѕСЃР»Рµ С‡РµРіРѕ СЃРґРµР»Р°Р№С‚Рµ РіР»СѓР±РѕРєРёР№ РІРґРѕС…, СЃС‚Р°СЂР°СЏСЃСЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕ СЂР°СЃС€РёСЂРёС‚СЊ СЂРµР±СЂР° РІ СЃС‚РѕСЂРѕРЅС‹, РїСЂРµРѕРґРѕР»РµРІР°СЏ СЃРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ СЂСѓРє. Р­С‚Рѕ С‚РѕС‡РµС‡РЅРѕ Р·Р°СЃС‚Р°РІР»СЏРµС‚ СЂР°Р±РѕС‚Р°С‚СЊ СЃРµРіРјРµРЅС‚С‹ S7-S10.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="aspect-video w-full bg-slate-100 relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/adoNwg8dgGc" title="РҐР°С„С„-РєР°С€РµР»СЊ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2">РђРєС‚РёРІРЅС‹Р№ С†РёРєР» РґС‹С…Р°РЅРёСЏ Рё "РҐР°С„С„-РєР°С€РµР»СЊ"</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>РўРµС…РЅРёРєР°:</strong> РЎРґРµР»Р°Р№С‚Рµ 3-4 СЃРїРѕРєРѕР№РЅС‹С… РІРґРѕС…Р°-РІС‹РґРѕС…Р°. Р—Р°С‚РµРј СЃРґРµР»Р°Р№С‚Рµ СЃСЂРµРґРЅРёР№ РІРґРѕС… Рё СЃ СЃРёР»РѕР№, РЅРѕ Р±РµР· РЅР°РїСЂСЏР¶РµРЅРёСЏ РІ РіРѕСЂР»Рµ, СЂРµР·РєРѕ РІС‹РґРѕС…РЅРёС‚Рµ С‡РµСЂРµР· РѕС‚РєСЂС‹С‚С‹Р№ СЂРѕС‚ СЃРѕ Р·РІСѓРєРѕРј "С…Р°С„С„" (Р±СѓРґС‚Рѕ РїС‹С‚Р°РµС‚РµСЃСЊ СЃРѕРіСЂРµС‚СЊ РґС‹С…Р°РЅРёРµРј Р·Р°РјРµСЂР·С€РµРµ СЃС‚РµРєР»Рѕ). Р­С‚Рѕ СЃРѕР·РґР°РµС‚ РѕРїС‚РёРјР°Р»СЊРЅРѕРµ РґР°РІР»РµРЅРёРµ РґР»СЏ РѕС‚СЂС‹РІР° РјРѕРєСЂРѕС‚С‹ РёР· РјРµР»РєРёС… Р±СЂРѕРЅС…РѕРІ Р±РµР· РёС… СЃРїР°Р·РјР°.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="aspect-video w-full bg-slate-100 relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/XaB170qwbeM" title="Р”С‹С…Р°РЅРёРµ СЃРѕ СЃР¶Р°С‚С‹РјРё РіСѓР±Р°РјРё" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2">Р”С‹С…Р°РЅРёРµ СЃРѕ СЃР¶Р°С‚С‹РјРё РіСѓР±Р°РјРё</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>РўРµС…РЅРёРєР°:</strong> Р’РґРѕС…РЅРёС‚Рµ С‡РµСЂРµР· РЅРѕСЃ РЅР° 2 СЃС‡РµС‚Р°. Р’С‹РґС‹С…Р°Р№С‚Рµ РјРµРґР»РµРЅРЅРѕ РЅР° 4-6 СЃС‡РµС‚РѕРІ С‡РµСЂРµР· РіСѓР±С‹, СЃР»РѕР¶РµРЅРЅС‹Рµ С‚СЂСѓР±РѕС‡РєРѕР№. Р­С‚Рѕ СЃРѕР·РґР°РµС‚ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕРµ РґР°РІР»РµРЅРёРµ РЅР° РІС‹РґРѕС…Рµ (PEP) Рё РЅРµ РґР°РµС‚ СЃР»РёРїР°С‚СЊСЃСЏ РјРµР»РєРёРј Р±СЂРѕРЅС…Р°Рј РІ Р·РѕРЅРµ С„РёР±СЂРѕР°С‚РµР»РµРєС‚Р°Р·Р°.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Training Plan (Interactive Tabs) -->
+        <section id="plan" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center justify-between flex-wrap gap-4">
+                <span class="flex items-center"><i class="fa-solid fa-calendar-days text-blue-500 mr-3"></i> Р”РµС‚Р°Р»РёР·РёСЂРѕРІР°РЅРЅС‹Р№ РњР°РєСЂРѕС†РёРєР» (24 РќРµРґРµР»Рё)</span>
+                <span class="text-sm font-normal text-slate-500 bg-slate-100 px-3 py-1 rounded-full">13.04.2026 вЂ“ 27.09.2026</span>
+            </h2>
+
+            <!-- Macrocycle Rules -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <i class="fa-solid fa-bullseye text-blue-600 text-xl mb-2"></i>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">РЎРґРІРёРі РїР°СЂР°РґРёРіРјС‹</h4>
+                    <p class="text-xs text-slate-600">Р¦РµР»СЊ РїРѕР»СѓРјР°СЂР°С„РѕРЅР° вЂ” В«Р±РµР·РѕРїР°СЃРЅС‹Р№ С„РёРЅРёС€В», Р° РЅРµ Р»РёС‡РЅС‹Р№ СЂРµРєРѕСЂРґ.</p>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <i class="fa-solid fa-ban text-red-600 text-xl mb-2"></i>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Р­РјР±Р°СЂРіРѕ РЅР° СЃРєРѕСЂРѕСЃС‚СЊ</h4>
+                    <p class="text-xs text-slate-600">Р—Р°РїСЂРµС‚ РЅР° РёРЅС‚РµСЂРІР°Р»С‹, С‚РµРјРїРѕРІС‹Р№ Р±РµРі, РіРѕСЂРєРё Рё РїР»РёРѕРјРµС‚СЂРёРєСѓ РґРѕ 6 РјРµСЃСЏС†РµРІ.</p>
+                </div>
+                <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
+                    <i class="fa-solid fa-person-biking text-teal-600 text-xl mb-2"></i>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Р”РѕРјРёРЅР°С†РёСЏ РєСЂРѕСЃСЃ-С‚СЂРµРЅРёРЅРіР°</h4>
+                    <p class="text-xs text-slate-600">РћСЃРЅРѕРІР° РєР°СЂРґРёРѕ вЂ” РІРµР»РѕСЃРёРїРµРґ (РєРѕРЅС†РµРЅС‚СЂРёС‡РµСЃРєРёРµ СЃРѕРєСЂР°С‰РµРЅРёСЏ Р±РµР· СѓРґР°СЂР°).</p>
+                </div>
+            </div>
+
+            <!-- Interactive Tabs -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                
+                <!-- Tab Headers -->
+                <div class="flex overflow-x-auto border-b border-slate-200 hide-scrollbar scroll-smooth" id="tab-headers">
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none tab-active" onclick="switchTab('phase1')">
+                        Р¤Р°Р·Р° 1 <span class="hidden sm:inline">(РќРµРґ 1-4)</span>
+                    </button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none" onclick="switchTab('phase2')">
+                        Р¤Р°Р·Р° 2 <span class="hidden sm:inline">(РќРµРґ 5-8)</span>
+                    </button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none" onclick="switchTab('phase3')">
+                        Р¤Р°Р·Р° 3 <span class="hidden sm:inline">(РќРµРґ 9-14)</span>
+                    </button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none" onclick="switchTab('phase4')">
+                        Р¤Р°Р·Р° 4 <span class="hidden sm:inline">(РќРµРґ 15-20)</span>
+                    </button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none" onclick="switchTab('phase5')">
+                        Р¤Р°Р·Р° 5 <span class="hidden sm:inline">(РќРµРґ 21-24)</span>
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="p-6 bg-slate-50 min-h-[400px]">
+                    
+                    <!-- PHASE 1 -->
+                    <div id="phase1" class="tab-content fade-in block">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Р¤Р°Р·Р° 1: Р РµСЃРїРёСЂР°С‚РѕСЂРЅРѕРµ СЂР°СЃРєСЂС‹С‚РёРµ Рё РёР·РѕРјРµС‚СЂРёСЏ</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-stethoscope text-slate-400 mr-1"></i> РљРѕРЅС‚СЂРѕР»СЊ: РћРђРљ, РЎР Р‘, РЈР—Р Р°С…РёР»Р»РѕРІ. Р¤Р’Р” РЅР° 4-Р№ РЅРµРґРµР»Рµ.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Week 1 -->
+                            <div class="bg-white p-4 lg:p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 1 (13.04 - 19.04)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div><strong>Р›Р¤Рљ:</strong> 3 СЂР°Р·Р°/РґРµРЅСЊ PEP-С‚РµСЂР°РїРёСЏ (Acapella/Р¤СЂРѕР»РѕРІ). 3С…10 РІС‹РґРѕС…РѕРІ + С„РѕСЂСЃРёСЂРѕРІР°РЅРЅС‹Р№ РєР°С€РµР»СЊ. 10 РјРёРЅ РґРёР°С„СЂР°РіРјР°Р»СЊРЅРѕРµ РїРµСЂРµРґ СЃРЅРѕРј.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>РЎРёР»РѕРІС‹Рµ (РР·РѕРјРµС‚СЂРёСЏ):</strong> 3 СЂР°Р·Р°/РЅРµРґ. Р”РІСѓРЅРѕРіРёР№ РїРѕРґСЉРµРј РЅР° РЅРѕСЃРєРё РЅР° РїРѕР»Сѓ, СѓРґРµСЂР¶Р°РЅРёРµ 45 СЃРµРє. 5 РїРѕРґС…РѕРґРѕРІ.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Р’РµР»РѕСЃРёРїРµРґ:</strong> 3 С‚СЂРµРЅРёСЂРѕРІРєРё (45 РєРј: 15+15+15). РџР»РѕСЃРєРёР№ СЂРµР»СЊРµС„, Р—РѕРЅР° 1, РєР°РґРµРЅСЃ 85-95. Р’СЃС‚Р°РІР°С‚СЊ Р·Р°РїСЂРµС‰РµРЅРѕ.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 2 -->
+                            <div class="bg-white p-4 lg:p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 2 (20.04 - 26.04)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div><strong>Р›Р¤Рљ:</strong> 3 СЂР°Р·Р°/РґРµРЅСЊ PEP-С‚РµСЂР°РїРёСЏ + РјРѕР±РёР»РёР·Р°С†РёСЏ РіСЂСѓРґРЅРѕР№ РєР»РµС‚РєРё.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>РЎРёР»РѕРІС‹Рµ:</strong> РР·РѕРјРµС‚СЂРёСЏ (5С…45 СЃРµРє РґРІСѓРЅРѕРіР°СЏ). РРЅС‚РµРіСЂР°С†РёСЏ РєРѕСЂР°: СЏРіРѕРґРёС‡РЅС‹Рµ РјРѕСЃС‚РёРєРё (3С…15), РїР»Р°РЅРєРё (3С…40 СЃРµРє).</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Р’РµР»РѕСЃРёРїРµРґ:</strong> 3 С‚СЂРµРЅРёСЂРѕРІРєРё (60 РєРј: 20+20+20). Р—РѕРЅР° 1-2, РїСѓР»СЊСЃ РґРѕ 125.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 3 -->
+                            <div class="bg-white p-4 lg:p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 3 (27.04 - 03.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div><strong>Р›Р¤Рљ:</strong> PEP-С‚РµСЂР°РїРёСЏ СЃРЅРёР¶Р°РµС‚СЃСЏ РґРѕ 2 СЂР°Р· РІ РґРµРЅСЊ.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>РЎРёР»РѕРІС‹Рµ:</strong> РћРґРЅРѕРЅРѕРіР°СЏ РёР·РѕРјРµС‚СЂРёСЏ (РїРѕРґСЉРµРј РЅР° РґРІСѓС…, СЃС‚Р°С‚РёРєР° РЅР° РѕРґРЅРѕР№ 30-45 СЃРµРє). 5 РїРѕРґС…РѕРґРѕРІ, 3 СЂР°Р·Р°/РЅРµРґ.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Р’РµР»РѕСЃРёРїРµРґ:</strong> 3 С‚СЂРµРЅРёСЂРѕРІРєРё (75 РєРј: 25+25+25). РљР°РґРµРЅСЃ 90.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 4 -->
+                            <div class="bg-white p-4 lg:p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 4 (04.05 - 10.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div><strong>Р›Р¤Рљ:</strong> 1 СЂР°Р· РІ РґРµРЅСЊ СѓС‚СЂРѕРј (15 РјРёРЅ).</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>РЎРёР»РѕРІС‹Рµ:</strong> РћРґРЅРѕРЅРѕРіР°СЏ РёР·РѕРјРµС‚СЂРёСЏ (5С…45 СЃРµРє).</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Р’РµР»РѕСЃРёРїРµРґ:</strong> 3 С‚СЂРµРЅРёСЂРѕРІРєРё (90 РєРј: 30+30+30).</div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHASE 2 -->
+                    <div id="phase2" class="tab-content hidden">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Р¤Р°Р·Р° 2: РњРµС…Р°РЅРёС‡РµСЃРєР°СЏ Р°РґР°РїС‚Р°С†РёСЏ СЃСѓС…РѕР¶РёР»РёР№</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-stethoscope text-slate-400 mr-1"></i> РљРѕРЅС‚СЂРѕР»СЊ: РџРѕРІС‚РѕСЂРЅРѕРµ РЈР—Р Р°С…РёР»Р»РѕРІ РІ РєРѕРЅС†Рµ 8-Р№ РЅРµРґРµР»Рё.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Week 5 -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 5 (11.05 - 17.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div>Р¤РѕРЅРѕРІС‹Р№ СЂРµР¶РёРј Р›Р¤Рљ (10 РјРёРЅ РїРµСЂРµРґ СЃРЅРѕРј).</div></li>
+                                    <li class="flex"><div class="w-8 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>Р’РЅРµРґСЂРµРЅРёРµ HSR (РјРµРґР»РµРЅРЅС‹Рµ СЃРѕРїСЂРѕС‚РёРІР»РµРЅРёСЏ):</strong> РџРѕРґСЉРµРјС‹ РІ Р¶РёРјРµ РЅРѕРіР°РјРё (3 СЃРµРє РІРІРµСЂС…, 3 РІРЅРёР·). 3С…15. Р­РєСЃС‚РµРЅР·РёРё. 2 СЂР°Р·Р°/РЅРµРґ.</div></li>
+                                    <li class="flex"><div class="w-8 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Р’РµР»Рѕ:</strong> 90 РєРј. <strong>РҐРѕРґСЊР±Р°:</strong> 2 СЃРµСЃСЃРёРё РёРЅС‚РµРЅСЃРёРІРЅРѕРіРѕ С€Р°РіР° РїРѕ 40 РјРёРЅ (РїСѓР»СЊСЃ 100-110).</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 6 -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 6 (18.05 - 24.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div>HSR РїСЂРѕС‚РѕРєРѕР» (3С…12), РІРµСЃ СѓРІРµР»РёС‡РµРЅ.</div></li>
+                                    <li class="flex"><div class="w-8 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Р’РµР»Рѕ:</strong> 100 РєРј (30+30+40). <strong>РҐРѕРґСЊР±Р°:</strong> 2 С‚СЂРµРЅРёСЂРѕРІРєРё РїРѕ 50 РјРёРЅСѓС‚.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 7 -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 7 (25.05 - 31.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div>HSR РіРѕР»РµРЅСЊ (3С…10), РїСЂРёСЃРµРґР°РЅРёСЏ СЃ РіРёСЂРµР№ (3С…12), РІС‹РїР°РґС‹ РЅР°Р·Р°Рґ.</div></li>
+                                    <li class="flex"><div class="w-8 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Р’РµР»Рѕ:</strong> 110 РєРј. <strong>РҐРѕРґСЊР±Р°:</strong> 2 С‚СЂРµРЅРёСЂРѕРІРєРё РїРѕ 60 РјРёРЅСѓС‚.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 8 -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 8 (01.06 - 07.06)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div>РџРѕРґРґРµСЂР¶РєР° HSR (3С…10).</div></li>
+                                    <li class="flex"><div class="w-8 text-blue-500"><i class="fa-solid fa-person-running"></i></div><div><strong>Р’РЅРµРґСЂРµРЅРёРµ Р±РµРіР° (Walk-to-Run):</strong> 4 РјРёРЅ РёРЅС‚РµРЅСЃРёРІРЅРѕР№ С…РѕРґСЊР±С‹ / 1 РјРёРЅ Р»РµРіРєРѕРіРѕ Р±РµРіР°. 6 РїРѕРІС‚РѕСЂРѕРІ (30 РјРёРЅ). РЎС‚СЂРѕРіРѕ РјСЏРіРєРёР№ РіСЂСѓРЅС‚. Р’РµР»Рѕ: 90 РєРј.</div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHASE 3 -->
+                    <div id="phase3" class="tab-content hidden">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Р¤Р°Р·Р° 3: РњРёРєСЂРѕРґРѕР·РёСЂРѕРІР°РЅРЅР°СЏ РёРЅС‚РµРіСЂР°С†РёСЏ Р±РµРіР°</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-eye text-slate-400 mr-1"></i> РљРѕРЅС‚СЂРѕР»СЊ: Р•Р¶РµРґРЅРµРІРЅС‹Р№ СЃР°РјРѕРѕСЃРјРѕС‚СЂ РЅР° РѕС‚РµРє. РџСЂРё СѓРїР»РѕС‚РЅРµРЅРёРё вЂ” Р·Р°РјРµРЅР° РЅР° РІРµР»Рѕ.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Weeks 9-10 -->
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 9</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>РЎРёР»РѕРІС‹Рµ:</strong> 2 СЂР°Р·Р°/РЅРµРґ (HSR).</li>
+                                        <li><strong>Р’РµР»Рѕ:</strong> 3 С‚СЂРµРЅРёСЂРѕРІРєРё (90 РєРј).</li>
+                                        <li><strong>Р‘РµРі:</strong> 2 СЃРµСЃСЃРёРё (3 РјРёРЅ С€Р°Рі / 2 РјРёРЅ Р±РµРі С… 6). ~4 РєРј.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 10</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>РЎРёР»РѕРІС‹Рµ:</strong> 2 СЂР°Р·Р°/РЅРµРґ.</li>
+                                        <li><strong>Р’РµР»Рѕ:</strong> 2 С‚СЂРµРЅРёСЂРѕРІРєРё (70 РєРј).</li>
+                                        <li><strong>Р‘РµРі:</strong> 3 СЃРµСЃСЃРёРё (2 РјРёРЅ С€Р°Рі / 3 РјРёРЅ Р±РµРі С… 6). РћР±СЉРµРј: 15 РєРј.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Weeks 11-12 -->
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 11</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Р’С‚ (Р‘РµРі):</strong> 1Рј С€Р°Рі / 4Рј Р±РµРі С… 8 (~6 РєРј).</li>
+                                        <li><strong>Р§С‚ (Р’РµР»Рѕ):</strong> 30 РєРј, Р—РѕРЅР° 1-2.</li>
+                                        <li><strong>РЎР± (Р‘РµРі):</strong> 1Рј С€Р°Рі / 5Рј Р±РµРі С… 8 (~8 РєРј).</li>
+                                        <li><strong>Р’СЃ (Р’РµР»Рѕ):</strong> 40 РєРј, Р—РѕРЅР° 2.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 12</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>РЎРёР»РѕРІС‹Рµ:</strong> 1 СЂР°Р·/РЅРµРґ.</li>
+                                        <li><strong>Р’РµР»Рѕ:</strong> 2 С‚СЂРµРЅРёСЂРѕРІРєРё (50 РєРј).</li>
+                                        <li><strong>Р‘РµРі:</strong> 3 СЃРµСЃСЃРёРё (1Рј С€Р°Рі / 9Рј Р±РµРі С… 4).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Weeks 13-14 -->
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-l-teal-500 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 13 (РќРµРїСЂРµСЂС‹РІРЅС‹Р№ Р±РµРі)</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Р‘РµРі:</strong> 3 С‚СЂРµРЅРёСЂРѕРІРєРё РїРѕ 30 РјРёРЅ РЅРµРїСЂРµСЂС‹РІРЅРѕ (Р—РѕРЅР° 2, РїСѓР»СЊСЃ <135). РћР±СЉРµРј ~16-18 РєРј.</li>
+                                        <li><strong>Р’РµР»Рѕ:</strong> 2 СЃРµСЃСЃРёРё (60 РєРј).</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-l-slate-300 shadow-sm opacity-90">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">РќРµРґРµР»СЏ 14 (Р Р°Р·РіСЂСѓР·РєР°)</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Р‘РµРі:</strong> 3 С‚СЂРµРЅРёСЂРѕРІРєРё РїРѕ 20 РјРёРЅ Р»РµРіРєРёРј С‚РµРјРїРѕРј.</li>
+                                        <li><strong>Р’РµР»Рѕ:</strong> 1 РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚РµР»СЊРЅР°СЏ СЃРµСЃСЃРёСЏ 30 РєРј.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHASE 4 -->
+                    <div id="phase4" class="tab-content hidden">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Р¤Р°Р·Р° 4: Р Р°Р·РІРёС‚РёРµ СЃРїРµС†РёС„РёС‡РµСЃРєРѕР№ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚Рё</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-flask text-slate-400 mr-1"></i> РљРѕРЅС‚СЂРѕР»СЊ: Р›Р°Р±РѕСЂР°С‚РѕСЂРЅС‹Р№ С‡РµРєР°Рї РєСЂРѕРІРё (Р¤РµСЂСЂРёС‚РёРЅ, Р’РёС‚Р°РјРёРЅ D, РћРђРљ).</p>
+                        </div>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <!-- Weekly Cards -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">РќРµРґРµР»СЏ 15</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Р‘РµРі Р’С‚:</strong> 6 РєРј</li>
+                                    <li><strong>Р‘РµРі Р§С‚:</strong> 6 РєРј</li>
+                                    <li><strong>Р‘РµРі Р’СЃ:</strong> 10 РєРј (Р”Р»РёРЅРЅС‹Р№)</li>
+                                    <li class="pt-2 border-t text-slate-500">Р’РµР»Рѕ: 30 РєРј</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">РќРµРґРµР»СЏ 16</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Р‘РµРі Р’С‚:</strong> 7 РєРј</li>
+                                    <li><strong>Р‘РµРі Р§С‚:</strong> 7 РєРј</li>
+                                    <li><strong>Р‘РµРі Р’СЃ:</strong> 12 РєРј</li>
+                                    <li class="pt-2 border-t text-slate-500">Р’РµР»Рѕ: 30 РєРј</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">РќРµРґРµР»СЏ 17</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Р‘РµРі Р’С‚:</strong> 8 РєРј</li>
+                                    <li><strong>Р‘РµРі Р§С‚:</strong> 8 РєРј</li>
+                                    <li><strong>Р‘РµРі Р’СЃ:</strong> 14 РєРј</li>
+                                    <li class="pt-2 border-t text-slate-500">Р’РµР»Рѕ: 30 РєРј</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">РќРµРґРµР»СЏ 18</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Р‘РµРі Р’С‚:</strong> 8 РєРј</li>
+                                    <li><strong>Р‘РµРі Р§С‚:</strong> 8 РєРј</li>
+                                    <li><strong>Р‘РµРі Р’СЃ:</strong> 16 РєРј</li>
+                                    <li class="pt-2 border-t text-slate-500">Р’РµР»Рѕ: 20 РєРј (РІРѕСЃСЃ.)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">РќРµРґРµР»СЏ 19 (РџРёРє 1)</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Р‘РµРі Р’С‚:</strong> 10 РєРј</li>
+                                    <li><strong>Р‘РµРі Р§С‚:</strong> 8 РєРј</li>
+                                    <li><strong>Р‘РµРі Р’СЃ:</strong> 18 РєРј</li>
+                                    <li class="pt-2 border-t border-blue-200 text-blue-700 text-xs font-bold">РћР±СЏР·Р°С‚РµР»РµРЅ РєРѕР»Р»Р°РіРµРЅ!</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm opacity-80">
+                                <h4 class="font-bold text-slate-800 mb-2">РќРµРґРµР»СЏ 20 (Р Р°Р·РіСЂСѓР·РєР°)</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Р‘РµРі Р’С‚:</strong> 6 РєРј</li>
+                                    <li><strong>Р‘РµРі Р§С‚:</strong> 6 РєРј</li>
+                                    <li><strong>Р‘РµРі Р’СЃ:</strong> 12 РєРј</li>
+                                    <li class="pt-2 border-t text-slate-500 line-through">Р’РµР»Рѕ РёСЃРєР»СЋС‡РµРЅРѕ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHASE 5 -->
+                    <div id="phase5" class="tab-content hidden">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Р¤Р°Р·Р° 5: РџРѕРґРІРѕРґРєР° (Tapering) Рё РЎС‚Р°СЂС‚</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-flag-checkered text-slate-400 mr-1"></i> РљРѕРЅС‚СЂРѕР»СЊ: РџСЂРѕС„РёР»Р°РєС‚РёС‡РµСЃРєРѕРµ РЈР—Р Р°С…РёР»Р»РѕРІ РїРµСЂРµРґ РіРѕРЅРєРѕР№.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-2">РќРµРґРµР»СЏ 21 (РџРёРє 2)</h4>
+                                <p class="text-sm text-slate-700"><strong>Р‘РµРі:</strong> Р’С‚ 10 РєРј / Р§С‚ 8 РєРј / Р’СЃ 20 РєРј (Р“РµРЅРµСЂР°Р»СЊРЅР°СЏ СЂРµРїРµС‚РёС†РёСЏ РІ Р—РѕРЅРµ 2). РћС‚РјРµРЅР° СЃРёР»РѕРІС‹С… (С‚РѕР»СЊРєРѕ СЂРѕР»РёРє).</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-2">РќРµРґРµР»СЏ 22 (РўРµР№РїРµСЂ 1)</h4>
+                                <p class="text-sm text-slate-700"><strong>Р‘РµРі:</strong> Р’С‚ 8 РєРј / Р§С‚ 6 РєРј / Р’СЃ 14 РєРј. <strong>Р’РµР»Рѕ:</strong> 20 РєРј (Р—РѕРЅР° 1).</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-2">РќРµРґРµР»СЏ 23 (РўРµР№РїРµСЂ 2)</h4>
+                                <p class="text-sm text-slate-700"><strong>Р‘РµРі:</strong> Р’С‚ 6 РєРј / Р§С‚ 5 РєРј / Р’СЃ 10 РєРј. Р’РµР»Рѕ РїРѕР»РЅРѕСЃС‚СЊСЋ РёСЃРєР»СЋС‡Р°РµС‚СЃСЏ РґР»СЏ Р±РµРіРѕРІРѕР№ СЃРїРµС†РёР°Р»РёР·Р°С†РёРё Р¦РќРЎ.</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-blue-600 to-teal-500 p-6 rounded-lg text-white shadow-md">
+                                <h4 class="font-bold text-xl border-b border-blue-400 pb-2 mb-3">РќРµРґРµР»СЏ 24 (Р“РѕРЅРѕС‡РЅР°СЏ)</h4>
+                                <ul class="space-y-2 text-sm text-blue-50">
+                                    <li><strong>Р’С‚:</strong> Р›РµРіРєРёР№ Р±РµРі 5 РєРј + 3-4 СѓСЃРєРѕСЂРµРЅРёСЏ РїРѕ 15 СЃРµРє.</li>
+                                    <li><strong>Р§С‚:</strong> Р›РµРіРєРёР№ Р±РµРі 3 РєРј.</li>
+                                    <li><strong>РџС‚/РЎР±:</strong> РћС‚РґС‹С…, РЈРіР»РµРІРѕРґРЅР°СЏ Р·Р°РіСЂСѓР·РєР°.</li>
+                                </ul>
+                                <div class="mt-4 bg-white/20 p-4 rounded border border-white/30 backdrop-blur-sm">
+                                    <h5 class="font-bold text-lg mb-1"><i class="fa-solid fa-trophy text-yellow-300 mr-2"></i> Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ (27.09.2026): РџРћР›РЈРњРђР РђР¤РћРќ</h5>
+                                    <p class="text-sm"><strong>РЎС‚СЂР°С‚РµРіРёСЏ:</strong> РЎРґРµСЂР¶РёРІР°РЅРёРµ Р°РјР±РёС†РёР№. РќР°С‡Р°С‚СЊ РјРµРґР»РµРЅРЅРµРµ С†РµР»РµРІРѕРіРѕ С‚РµРјРїР°. РњСЏРіРєР°СЏ РїРѕСЃС‚Р°РЅРѕРІРєР° СЃС‚РѕРїС‹. РР·Р±РµРіР°С‚СЊ С„РёРЅРёС€РЅРѕРіРѕ СЃРїСЂРёРЅС‚Р°.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section id="conclusion" class="border-t border-slate-200 pt-12 pb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Р—Р°РєР»СЋС‡РµРЅРёРµ</h2>
+            <div class="bg-slate-800 text-slate-300 p-8 rounded-xl leading-relaxed">
+                <p class="mb-4">
+                    Р’РѕР·РІСЂР°С‰РµРЅРёРµ РІ СЃРѕСЂРµРІРЅРѕРІР°С‚РµР»СЊРЅС‹Р№ РїСЂРѕС†РµСЃСЃ РїРѕСЃР»Рµ Р°С‚РёРїРёС‡РЅРѕР№ РїРЅРµРІРјРѕРЅРёРё (Р¤Р–Р•Р› 72%) Рё РїСЂРёРјРµРЅРµРЅРёСЏ Р»РµРІРѕС„Р»РѕРєСЃР°С†РёРЅР° (FQAD) вЂ” РєРѕРјРїР»РµРєСЃРЅР°СЏ Р·Р°РґР°С‡Р°. РЎС„РѕСЂРјРёСЂРѕРІР°РЅРЅР°СЏ Р±РµРіРѕРІР°СЏ Р±Р°Р·Р° (980 РєРј) Рё РѕРїС‹С‚ РІРµР»РѕС‚СЂРµРЅРёСЂРѕРІРѕРє (565 РєРј) РїРѕР·РІРѕР»РёР»Рё СЂР°Р·СЂР°Р±РѕС‚Р°С‚СЊ РѕСЂС‚РѕРїРµРґРёС‡РµСЃРєРё Р±РµР·РѕРїР°СЃРЅСѓСЋ СЃС‚СЂР°С‚РµРіРёСЋ.
+                </p>
+                <p>
+                    РђСЂС…РёС‚РµРєС‚СѓСЂР° 24-РЅРµРґРµР»СЊРЅРѕР№ СЃС‚СЂР°С‚РµРіРёРё Р±Р°Р·РёСЂСѓРµС‚СЃСЏ РЅР° СЃРјРµС‰РµРЅРёРё РЅР°С‡Р°Р»СЊРЅРѕРіРѕ РѕР±СЉРµРјР° РІ СЃС‚РѕСЂРѕРЅСѓ РІРµР»РѕСЃРёРїРµРґР°, Р°РіСЂРµСЃСЃРёРІРЅРѕР№ РЅСѓС‚СЂРёС†РµРІС‚РёС‡РµСЃРєРѕР№ РїРѕРґРґРµСЂР¶РєРµ, PEP-С‚РµСЂР°РїРёРё РґР»СЏ Р»РµРіРєРёС… Рё СѓР»СЊС‚СЂР°-РєРѕРЅСЃРµСЂРІР°С‚РёРІРЅРѕРј РІРѕР·РІСЂР°С‰РµРЅРёРё Рє Р±РµРіСѓ. РЎРєСЂСѓРїСѓР»РµР·РЅРѕРµ СЃР»РµРґРѕРІР°РЅРёРµ РїР»Р°РЅСѓ РѕР±РµСЃРїРµС‡РёС‚ Р±РµР·РѕРїР°СЃРЅС‹Р№ РІС‹С…РѕРґ РЅР° СЃС‚Р°СЂС‚.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-slate-500 text-sm">
+        <p>РњРµРґРёС†РёРЅСЃРєРёР№ РєРѕРЅСЃРёР»РёСѓРј &copy; 2026. Р”Р°РЅРЅС‹Р№ РѕС‚С‡РµС‚ РЅРѕСЃРёС‚ Р°РЅР°Р»РёС‚РёС‡РµСЃРєРёР№ С…Р°СЂР°РєС‚РµСЂ.</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        // Tab functionality
+        function switchTab(tabId) {
+            // Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => {
+                c.classList.remove('block', 'fade-in');
+                c.classList.add('hidden');
+            });
+            
+            // Show target
+            const target = document.getElementById(tabId);
+            target.classList.remove('hidden');
+            target.classList.add('block', 'fade-in');
+
+            // Update buttons
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => {
+                b.classList.remove('tab-active');
+                if(b.getAttribute('onclick').includes(tabId)) {
+                    b.classList.add('tab-active');
+                }
+            });
+        }
+
+        // Mobile Menu Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
