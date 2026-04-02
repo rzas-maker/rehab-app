@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комплексный научно-клинический отчет: Реабилитация</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { border-bottom-color: #2563eb; color: #1e40af; font-weight: 600; background-color: #eff6ff; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-file-medical text-blue-600 text-2xl mr-3"></i>
+                    <span class="font-bold text-lg text-slate-900 hidden sm:block">RehabTracker Pro</span>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center text-sm font-medium text-slate-600">
+                    <a href="#profile" class="hover:text-blue-600 transition">Профиль</a>
+                    <a href="#stats" class="hover:text-blue-600 transition">Статистика 2025</a>
+                    <a href="#pathology" class="hover:text-blue-600 transition">Патология</a>
+                    <a href="#monitoring" class="hover:text-blue-600 transition">Мониторинг</a>
+                    <a href="#nutrition" class="hover:text-blue-600 transition">Нутрицевтика</a>
+                    <a href="#breathing" class="hover:text-blue-600 transition">Дыхание</a>
+                    <a href="#plan" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition">Макроцикл</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-blue-600">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 shadow-lg">
+            <a href="#profile" class="block py-2 text-slate-600">Профиль</a>
+            <a href="#stats" class="block py-2 text-slate-600">Статистика</a>
+            <a href="#pathology" class="block py-2 text-slate-600">Патология</a>
+            <a href="#breathing" class="block py-2 text-slate-600">Дыхание</a>
+            <a href="#plan" class="block py-2 text-blue-600 font-bold">Макроцикл</a>
+        </div>
+    </nav>
+
+    <!-- Header / Hero -->
+    <header class="bg-white border-b border-slate-200 py-12 lg:py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4 border border-blue-200">
+                Комплексный научно-клинический отчет
+            </div>
+            <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
+                Стратегия мультидисциплинарной реабилитации и реинтеграции в тренировочный процесс
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                После перенесенной атипичной пневмонии и фторхинолон-индуцированной токсичности.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- Section 1: Intro & Profile -->
+        <section id="profile" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-user-injured text-blue-500 mr-3"></i> Профиль спортсмена
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
+                <p class="text-slate-700 leading-relaxed mb-6">
+                    Настоящий аналитический отчет представляет собой исчерпывающий, детализированный разбор клинической и спортивной траектории <strong>32-летнего мужчины</strong>, являющегося бегуном-любителем с 4-летним стажем регулярных тренировок в циклических видах спорта.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex items-start">
+                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
+                            <i class="fa-solid fa-medal text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-900">Полумарафон (4 финиша)</h4>
+                            <p class="text-sm text-slate-500">Личный рекорд: <span class="font-bold text-slate-800">1:49:00</span> (~5:10 мин/км)</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex items-start">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4 text-purple-600">
+                            <i class="fa-solid fa-route text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-900">Марафон (2 финиша)</h4>
+                            <p class="text-sm text-slate-500">Личный рекорд: <span class="font-bold text-slate-800">5:00:00</span> (~7:06 мин/км)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 2025 Stats -->
+        <section id="stats" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-chart-line text-blue-500 mr-3"></i> Ретроспективный анализ (2025 год)
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Running Stats -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-4 text-slate-100 opacity-20 text-6xl"><i class="fa-solid fa-person-running"></i></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">Беговой объем</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Дистанция</p>
+                                <p class="text-2xl font-extrabold text-blue-600">980.66 <span class="text-base font-normal">км</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Тренировки</p>
+                                <p class="text-2xl font-extrabold text-slate-800">123</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Длительность</p>
+                                <p class="text-lg font-bold text-slate-700">112.2 ч</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Средний темп</p>
+                                <p class="text-lg font-bold text-slate-700">6:52 /км</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-600 mt-4 bg-slate-50 p-2 rounded">Пик объемов: май (189 км) и июнь (180 км).</p>
+                    </div>
+                </div>
+                <!-- Cycling Stats -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-4 text-slate-100 opacity-20 text-6xl"><i class="fa-solid fa-person-biking"></i></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">Велосипедный объем</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Дистанция</p>
+                                <p class="text-2xl font-extrabold text-teal-600">565.72 <span class="text-base font-normal">км</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Тренировки</p>
+                                <p class="text-2xl font-extrabold text-slate-800">25</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Длительность</p>
+                                <p class="text-lg font-bold text-slate-700">30.8 ч</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-wider">Ср. скорость</p>
+                                <p class="text-lg font-bold text-slate-700">18.36 км/ч</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-600 mt-4 bg-slate-50 p-2 rounded">Пик наката: октябрь (336 км).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg text-sm text-slate-700">
+                <i class="fa-solid fa-circle-info mr-2 text-blue-600"></i> <strong>Резюме:</strong> Сформирована уверенная любительская аэробная база. Наличие опыта велосипедных тренировок позволяет безопасно использовать кросс-тренинг как инструмент поддержания кардиовыносливости без ударной нагрузки.
+            </div>
+        </section>
+
+        <!-- Section 3: Pathophysiology (Critical) -->
+        <section id="pathology" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-triangle-exclamation text-red-500 mr-3"></i> Патофизиологические барьеры
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- Respiratory -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 relative overflow-hidden">
+                    <div class="absolute w-2 h-full bg-teal-500 left-0 top-0"></div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center">
+                        <i class="fa-solid fa-lungs text-teal-500 mr-2"></i> Респираторный статус: Фиброателектаз
+                    </h3>
+                    <p class="text-slate-700 mb-4">
+                        Последствия ко-инфекции Mycoplasma pneumoniae и Chlamydophila pneumoniae привели к структурным перестройкам (МСКТ: симптом «матового стекла», фиброателектаз S7, S9, S10 правого легкого).
+                    </p>
+                    <div class="bg-slate-50 p-4 rounded border border-slate-200 flex items-center justify-between flex-wrap gap-4">
+                        <div>
+                            <p class="text-sm text-slate-500">ФЖЕЛ (Спирометрия от 01.04.2026)</p>
+                            <p class="text-2xl font-bold text-slate-800">4.43 л <span class="text-sm text-red-500 font-normal">(72% от нормы 6.13 л)</span></p>
+                        </div>
+                        <div class="text-sm text-slate-600 max-w-sm">
+                            <i class="fa-solid fa-circle-exclamation text-amber-500"></i> <strong>Риск:</strong> Снижение ФЖЕЛ на 28% ведет к раннему накоплению лактата и тяжелой тканевой гипоксии на высоких пульсовых зонах.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tendons / FQAD (CRITICAL WARNING) -->
+                <div class="bg-red-50 rounded-xl shadow-sm border border-red-200 p-6 relative overflow-hidden">
+                    <div class="absolute w-2 h-full bg-red-600 left-0 top-0"></div>
+                    <h3 class="text-xl font-bold text-red-800 mb-3 flex items-center">
+                        <i class="fa-solid fa-biohazard mr-2"></i> Скелетно-мышечный статус (FQAD)
+                    </h3>
+                    <p class="text-red-900 font-semibold mb-4 border-b border-red-200 pb-3">
+                        Ключевая угроза: 10-дневный курс антибиотика Левофлоксацин (фторхинолоны). Доказанная высокоспецифичная токсичность к коллагену I типа (ахиллово сухожилие).
+                    </p>
+                    <ul class="space-y-3 text-red-800 text-sm">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-skull-crossbones mt-1 mr-3 text-red-600"></i>
+                            <span><strong>Гиперэкспрессия ММП:</strong> Ферменты буквально растворяют структурный каркас сухожилия изнутри.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-skull-crossbones mt-1 mr-3 text-red-600"></i>
+                            <span><strong>Митохондриальная дисфункция:</strong> Энергетический кризис и массовая гибель клеток (апоптоз). Сухожилие теряет способность к восстановлению микротравм.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-skull-crossbones mt-1 mr-3 text-red-600"></i>
+                            <span><strong>Дефицит магния:</strong> Хелатирование ионов магния приводит к выработке рыхлого, неполноценного коллагена.</span>
+                        </li>
+                    </ul>
+                    <div class="mt-5 bg-white bg-opacity-60 p-3 rounded-lg border border-red-300 text-center font-bold text-red-900">
+                        Окно пикового риска спонтанного разрыва ахиллова сухожилия: 6 МЕСЯЦЕВ после отмены препарата (до конца сентября 2026).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Monitoring Protocol -->
+        <section id="monitoring" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-microscope text-blue-500 mr-3"></i> Протокол мониторинга
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Mandatory -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2"><i class="fa-solid fa-check-double text-green-500 mr-2"></i> Обязательный скрининг</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-slate-800">УЗИ ахилловых сухожилий (с допплером)</div>
+                            <div class="text-slate-600 mt-1">Фаза 1 (база) и конец 8-й недели. Исключить гипоэхогенные зоны и кровоток.</div>
+                        </li>
+                        <li class="p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-slate-800">Магний в эритроцитах (RBC)</div>
+                            <div class="text-slate-600 mt-1">В Фазе 1. Целевой уровень >5.5 мг/дл. (Сывороточный неинформативен).</div>
+                        </li>
+                        <li class="p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-slate-800">ОАК, СРБ (<5 мг/л), АЛТ, АСТ, Креатинин</div>
+                            <div class="text-slate-600 mt-1">В начале Фазы 1 для контроля воспаления и функции органов.</div>
+                        </li>
+                        <li class="p-3 bg-slate-50 rounded border border-slate-100">
+                            <div class="font-bold text-slate-800">Спирометрия (ФВД) с бронходилататором</div>
+                            <div class="text-slate-600 mt-1">Конец 4-й и 12-й недели. Цель: возврат ФЖЕЛ >85-90%.</div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Red Flags -->
+                <div class="bg-white p-6 rounded-xl border border-amber-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2"><i class="fa-solid fa-flag text-amber-500 mr-2"></i> Симптоматические исследования («Красные флаги»)</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="p-3 bg-amber-50 rounded border border-amber-100">
+                            <div class="font-bold text-slate-800">МРТ ахиллова сухожилия</div>
+                            <div class="text-slate-700 mt-1"><strong>Показания:</strong> Острая боль, стойкий утренний отек (не проходит после разминки), крепитация ("хруст").</div>
+                        </li>
+                        <li class="p-3 bg-amber-50 rounded border border-amber-100">
+                            <div class="font-bold text-slate-800">Низкодозовая КТ легких</div>
+                            <div class="text-slate-700 mt-1"><strong>Показания:</strong> Возврат лихорадки, боль в груди на глубоком вдохе, выделение гнойной мокроты.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Nutrition -->
+        <section id="nutrition" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-pills text-blue-500 mr-3"></i> Нутрицевтическая поддержка
+            </h2>
+            <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+                <table class="min-w-full bg-white text-sm text-left">
+                    <thead class="bg-slate-100 text-slate-700 uppercase font-semibold">
+                        <tr>
+                            <th class="px-6 py-4 border-b">Агент</th>
+                            <th class="px-6 py-4 border-b">Дозировка / Протокол</th>
+                            <th class="px-6 py-4 border-b hidden md:table-cell">Обоснование (FQAD)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800">Магний</td>
+                            <td class="px-6 py-4">400-600 мг/сутки (бисглицинат/малат).</td>
+                            <td class="px-6 py-4 text-slate-600 hidden md:table-cell">Компенсация внутриклеточного хелатирования, предотвращение отслоения теноцитов.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800">Вит E + Селен</td>
+                            <td class="px-6 py-4">Vit E: 400 МЕ, Селен: 200 мкг (3-4 месяца).</td>
+                            <td class="px-6 py-4 text-slate-600 hidden md:table-cell">Синергичный антиоксидант. Снижает митохондриальный стресс и патологическую неоваскуляризацию.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800">Витамин C</td>
+                            <td class="px-6 py-4 bg-amber-50">500-1000 мг <strong>строго за 40-60 мин</strong> до тренировки.</td>
+                            <td class="px-6 py-4 text-slate-600 hidden md:table-cell">Кофактор пролилгидроксилазы. Необходим для стабилизации тройной спирали нового коллагена.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800">Коллаген / Желатин</td>
+                            <td class="px-6 py-4 bg-amber-50">15-20 г <strong>совместно с Вит С</strong> до тренировки.</td>
+                            <td class="px-6 py-4 text-slate-600 hidden md:table-cell">Адресное обеспечение поврежденной ткани строительным материалом в момент механической стимуляции.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: Breathing Exercises -->
+        <section id="breathing" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center">
+                <i class="fa-solid fa-wind text-blue-500 mr-3"></i> Дыхательная гимнастика
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Video 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="aspect-video w-full bg-slate-100 relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/9jpchJcKivk" title="Диафрагмальное дыхание" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2">Диафрагмальное дыхание (дыхание животом)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>Техника:</strong> Лягте на спину или сядьте прямо. Положите одну руку на грудь, другую на живот чуть ниже ребер. Медленно вдыхайте через нос: рука на животе должна подниматься (живот надувается), а рука на груди оставаться неподвижной. Выдыхайте медленно через рот, позволяя животу опуститься. Повторяйте по 5-10 минут.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="aspect-video w-full bg-slate-100 relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/LTJTqWcSAC8" title="Локализованное дыхание" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2">Локализованное дыхание для нижних ребер</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>Техника:</strong> Сядьте прямо. Плотно обхватите ладонями нижние ребра по бокам. При выдохе мягко сдавливайте ребра. Непосредственно перед началом вдоха сделайте руками короткое нажатие внутрь и вниз, после чего сделайте глубокий вдох, стараясь максимально расширить ребра в стороны, преодолевая сопротивление рук. Это точечно заставляет работать сегменты S7-S10.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="aspect-video w-full bg-slate-100 relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/adoNwg8dgGc" title="Хафф-кашель" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2">Активный цикл дыхания и "Хафф-кашель"</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>Техника:</strong> Сделайте 3-4 спокойных вдоха-выдоха. Затем сделайте средний вдох и с силой, но без напряжения в горле, резко выдохните через открытый рот со звуком "хафф" (будто пытаетесь согреть дыханием замерзшее стекло). Это создает оптимальное давление для отрыва мокроты из мелких бронхов без их спазма.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition">
+                    <div class="aspect-video w-full bg-slate-100 relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/XaB170qwbeM" title="Дыхание со сжатыми губами" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 flex-grow">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2">Дыхание со сжатыми губами</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong>Техника:</strong> Вдохните через нос на 2 счета. Выдыхайте медленно на 4-6 счетов через губы, сложенные трубочкой. Это создает положительное давление на выдохе (PEP) и не дает слипаться мелким бронхам в зоне фиброателектаза.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Training Plan (Interactive Tabs) -->
+        <section id="plan" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 border-b-2 border-slate-200 pb-2 mb-6 flex items-center justify-between flex-wrap gap-4">
+                <span class="flex items-center"><i class="fa-solid fa-calendar-days text-blue-500 mr-3"></i> Детализированный Макроцикл (24 Недели)</span>
+                <span class="text-sm font-normal text-slate-500 bg-slate-100 px-3 py-1 rounded-full">13.04.2026 – 27.09.2026</span>
+            </h2>
+
+            <!-- Macrocycle Rules -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <i class="fa-solid fa-bullseye text-blue-600 text-xl mb-2"></i>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Сдвиг парадигмы</h4>
+                    <p class="text-xs text-slate-600">Цель полумарафона — «безопасный финиш», а не личный рекорд.</p>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <i class="fa-solid fa-ban text-red-600 text-xl mb-2"></i>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Эмбарго на скорость</h4>
+                    <p class="text-xs text-slate-600">Запрет на интервалы, темповый бег, горки и плиометрику до 6 месяцев.</p>
+                </div>
+                <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
+                    <i class="fa-solid fa-person-biking text-teal-600 text-xl mb-2"></i>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">Доминация кросс-тренинга</h4>
+                    <p class="text-xs text-slate-600">Основа кардио — велосипед (концентрические сокращения без удара).</p>
+                </div>
+            </div>
+
+            <!-- Interactive Tabs -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                
+                <!-- Tab Headers -->
+                <div class="flex overflow-x-auto border-b border-slate-200 hide-scrollbar scroll-smooth" id="tab-headers">
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none tab-active" onclick="switchTab('phase1')">
+                        Фаза 1 <span class="hidden sm:inline">(Нед 1-4)</span>
+                    </button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none" onclick="switchTab('phase2')">
+                        Фаза 2 <span class="hidden sm:inline">(Нед 5-8)</span>
+                    </button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none" onclick="switchTab('phase3')">
+                        Фаза 3 <span class="hidden sm:inline">(Нед 9-14)</span>
+                    </button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none" onclick="switchTab('phase4')">
+                        Фаза 4 <span class="hidden sm:inline">(Нед 15-20)</span>
+                    </button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-slate-500 whitespace-nowrap hover:text-blue-600 transition outline-none" onclick="switchTab('phase5')">
+                        Фаза 5 <span class="hidden sm:inline">(Нед 21-24)</span>
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="p-6 bg-slate-50 min-h-[400px]">
+                    
+                    <!-- PHASE 1 -->
+                    <div id="phase1" class="tab-content fade-in block">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Фаза 1: Респираторное раскрытие и изометрия</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-stethoscope text-slate-400 mr-1"></i> Контроль: ОАК, СРБ, УЗИ ахиллов. ФВД на 4-й неделе.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Week 1 -->
+                            <div class="bg-white p-4 lg:p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 1 (13.04 - 19.04)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div><strong>ЛФК:</strong> 3 раза/день PEP-терапия (Acapella/Фролов). 3х10 выдохов + форсированный кашель. 10 мин диафрагмальное перед сном.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>Силовые (Изометрия):</strong> 3 раза/нед. Двуногий подъем на носки на полу, удержание 45 сек. 5 подходов.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Велосипед:</strong> 3 тренировки (45 км: 15+15+15). Плоский рельеф, Зона 1, каденс 85-95. Вставать запрещено.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 2 -->
+                            <div class="bg-white p-4 lg:p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 2 (20.04 - 26.04)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div><strong>ЛФК:</strong> 3 раза/день PEP-терапия + мобилизация грудной клетки.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>Силовые:</strong> Изометрия (5х45 сек двуногая). Интеграция кора: ягодичные мостики (3х15), планки (3х40 сек).</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Велосипед:</strong> 3 тренировки (60 км: 20+20+20). Зона 1-2, пульс до 125.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 3 -->
+                            <div class="bg-white p-4 lg:p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 3 (27.04 - 03.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div><strong>ЛФК:</strong> PEP-терапия снижается до 2 раз в день.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>Силовые:</strong> Одноногая изометрия (подъем на двух, статика на одной 30-45 сек). 5 подходов, 3 раза/нед.</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Велосипед:</strong> 3 тренировки (75 км: 25+25+25). Каденс 90.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 4 -->
+                            <div class="bg-white p-4 lg:p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 4 (04.05 - 10.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div><strong>ЛФК:</strong> 1 раз в день утром (15 мин).</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>Силовые:</strong> Одноногая изометрия (5х45 сек).</div></li>
+                                    <li class="flex"><div class="w-8 flex-shrink-0 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Велосипед:</strong> 3 тренировки (90 км: 30+30+30).</div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHASE 2 -->
+                    <div id="phase2" class="tab-content hidden">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Фаза 2: Механическая адаптация сухожилий</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-stethoscope text-slate-400 mr-1"></i> Контроль: Повторное УЗИ ахиллов в конце 8-й недели.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Week 5 -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 5 (11.05 - 17.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 text-teal-500"><i class="fa-solid fa-lungs"></i></div><div>Фоновый режим ЛФК (10 мин перед сном).</div></li>
+                                    <li class="flex"><div class="w-8 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div><strong>Внедрение HSR (медленные сопротивления):</strong> Подъемы в жиме ногами (3 сек вверх, 3 вниз). 3х15. Экстензии. 2 раза/нед.</div></li>
+                                    <li class="flex"><div class="w-8 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Вело:</strong> 90 км. <strong>Ходьба:</strong> 2 сессии интенсивного шага по 40 мин (пульс 100-110).</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 6 -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 6 (18.05 - 24.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div>HSR протокол (3х12), вес увеличен.</div></li>
+                                    <li class="flex"><div class="w-8 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Вело:</strong> 100 км (30+30+40). <strong>Ходьба:</strong> 2 тренировки по 50 минут.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 7 -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 7 (25.05 - 31.05)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div>HSR голень (3х10), приседания с гирей (3х12), выпады назад.</div></li>
+                                    <li class="flex"><div class="w-8 text-blue-500"><i class="fa-solid fa-person-biking"></i></div><div><strong>Вело:</strong> 110 км. <strong>Ходьба:</strong> 2 тренировки по 60 минут.</div></li>
+                                </ul>
+                            </div>
+                            <!-- Week 8 -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 8 (01.06 - 07.06)</h4>
+                                <ul class="space-y-3 text-sm text-slate-700">
+                                    <li class="flex"><div class="w-8 text-slate-500"><i class="fa-solid fa-dumbbell"></i></div><div>Поддержка HSR (3х10).</div></li>
+                                    <li class="flex"><div class="w-8 text-blue-500"><i class="fa-solid fa-person-running"></i></div><div><strong>Внедрение бега (Walk-to-Run):</strong> 4 мин интенсивной ходьбы / 1 мин легкого бега. 6 повторов (30 мин). Строго мягкий грунт. Вело: 90 км.</div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHASE 3 -->
+                    <div id="phase3" class="tab-content hidden">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Фаза 3: Микродозированная интеграция бега</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-eye text-slate-400 mr-1"></i> Контроль: Ежедневный самоосмотр на отек. При уплотнении — замена на вело.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Weeks 9-10 -->
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 9</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Силовые:</strong> 2 раза/нед (HSR).</li>
+                                        <li><strong>Вело:</strong> 3 тренировки (90 км).</li>
+                                        <li><strong>Бег:</strong> 2 сессии (3 мин шаг / 2 мин бег х 6). ~4 км.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 10</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Силовые:</strong> 2 раза/нед.</li>
+                                        <li><strong>Вело:</strong> 2 тренировки (70 км).</li>
+                                        <li><strong>Бег:</strong> 3 сессии (2 мин шаг / 3 мин бег х 6). Объем: 15 км.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Weeks 11-12 -->
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 11</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Вт (Бег):</strong> 1м шаг / 4м бег х 8 (~6 км).</li>
+                                        <li><strong>Чт (Вело):</strong> 30 км, Зона 1-2.</li>
+                                        <li><strong>Сб (Бег):</strong> 1м шаг / 5м бег х 8 (~8 км).</li>
+                                        <li><strong>Вс (Вело):</strong> 40 км, Зона 2.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 12</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Силовые:</strong> 1 раз/нед.</li>
+                                        <li><strong>Вело:</strong> 2 тренировки (50 км).</li>
+                                        <li><strong>Бег:</strong> 3 сессии (1м шаг / 9м бег х 4).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Weeks 13-14 -->
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-l-teal-500 shadow-sm">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 13 (Непрерывный бег)</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Бег:</strong> 3 тренировки по 30 мин непрерывно (Зона 2, пульс <135). Объем ~16-18 км.</li>
+                                        <li><strong>Вело:</strong> 2 сессии (60 км).</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-l-slate-300 shadow-sm opacity-90">
+                                    <h4 class="font-bold text-slate-800 border-b pb-2 mb-3">Неделя 14 (Разгрузка)</h4>
+                                    <ul class="space-y-2 text-sm text-slate-700">
+                                        <li><strong>Бег:</strong> 3 тренировки по 20 мин легким темпом.</li>
+                                        <li><strong>Вело:</strong> 1 восстановительная сессия 30 км.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHASE 4 -->
+                    <div id="phase4" class="tab-content hidden">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Фаза 4: Развитие специфической выносливости</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-flask text-slate-400 mr-1"></i> Контроль: Лабораторный чекап крови (Ферритин, Витамин D, ОАК).</p>
+                        </div>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <!-- Weekly Cards -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">Неделя 15</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Бег Вт:</strong> 6 км</li>
+                                    <li><strong>Бег Чт:</strong> 6 км</li>
+                                    <li><strong>Бег Вс:</strong> 10 км (Длинный)</li>
+                                    <li class="pt-2 border-t text-slate-500">Вело: 30 км</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">Неделя 16</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Бег Вт:</strong> 7 км</li>
+                                    <li><strong>Бег Чт:</strong> 7 км</li>
+                                    <li><strong>Бег Вс:</strong> 12 км</li>
+                                    <li class="pt-2 border-t text-slate-500">Вело: 30 км</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">Неделя 17</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Бег Вт:</strong> 8 км</li>
+                                    <li><strong>Бег Чт:</strong> 8 км</li>
+                                    <li><strong>Бег Вс:</strong> 14 км</li>
+                                    <li class="pt-2 border-t text-slate-500">Вело: 30 км</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">Неделя 18</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Бег Вт:</strong> 8 км</li>
+                                    <li><strong>Бег Чт:</strong> 8 км</li>
+                                    <li><strong>Бег Вс:</strong> 16 км</li>
+                                    <li class="pt-2 border-t text-slate-500">Вело: 20 км (восс.)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm">
+                                <h4 class="font-bold text-slate-800 mb-2">Неделя 19 (Пик 1)</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Бег Вт:</strong> 10 км</li>
+                                    <li><strong>Бег Чт:</strong> 8 км</li>
+                                    <li><strong>Бег Вс:</strong> 18 км</li>
+                                    <li class="pt-2 border-t border-blue-200 text-blue-700 text-xs font-bold">Обязателен коллаген!</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm opacity-80">
+                                <h4 class="font-bold text-slate-800 mb-2">Неделя 20 (Разгрузка)</h4>
+                                <ul class="text-sm text-slate-700 space-y-1">
+                                    <li><strong>Бег Вт:</strong> 6 км</li>
+                                    <li><strong>Бег Чт:</strong> 6 км</li>
+                                    <li><strong>Бег Вс:</strong> 12 км</li>
+                                    <li class="pt-2 border-t text-slate-500 line-through">Вело исключено</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHASE 5 -->
+                    <div id="phase5" class="tab-content hidden">
+                        <div class="mb-6 bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-800">Фаза 5: Подводка (Tapering) и Старт</h3>
+                            <p class="text-sm text-slate-600 mt-1"><i class="fa-solid fa-flag-checkered text-slate-400 mr-1"></i> Контроль: Профилактическое УЗИ ахиллов перед гонкой.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-2">Неделя 21 (Пик 2)</h4>
+                                <p class="text-sm text-slate-700"><strong>Бег:</strong> Вт 10 км / Чт 8 км / Вс 20 км (Генеральная репетиция в Зоне 2). Отмена силовых (только ролик).</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-2">Неделя 22 (Тейпер 1)</h4>
+                                <p class="text-sm text-slate-700"><strong>Бег:</strong> Вт 8 км / Чт 6 км / Вс 14 км. <strong>Вело:</strong> 20 км (Зона 1).</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-slate-800 border-b pb-2 mb-2">Неделя 23 (Тейпер 2)</h4>
+                                <p class="text-sm text-slate-700"><strong>Бег:</strong> Вт 6 км / Чт 5 км / Вс 10 км. Вело полностью исключается для беговой специализации ЦНС.</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-blue-600 to-teal-500 p-6 rounded-lg text-white shadow-md">
+                                <h4 class="font-bold text-xl border-b border-blue-400 pb-2 mb-3">Неделя 24 (Гоночная)</h4>
+                                <ul class="space-y-2 text-sm text-blue-50">
+                                    <li><strong>Вт:</strong> Легкий бег 5 км + 3-4 ускорения по 15 сек.</li>
+                                    <li><strong>Чт:</strong> Легкий бег 3 км.</li>
+                                    <li><strong>Пт/Сб:</strong> Отдых, Углеводная загрузка.</li>
+                                </ul>
+                                <div class="mt-4 bg-white/20 p-4 rounded border border-white/30 backdrop-blur-sm">
+                                    <h5 class="font-bold text-lg mb-1"><i class="fa-solid fa-trophy text-yellow-300 mr-2"></i> Воскресенье (27.09.2026): ПОЛУМАРАФОН</h5>
+                                    <p class="text-sm"><strong>Стратегия:</strong> Сдерживание амбиций. Начать медленнее целевого темпа. Мягкая постановка стопы. Избегать финишного спринта.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section id="conclusion" class="border-t border-slate-200 pt-12 pb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Заключение</h2>
+            <div class="bg-slate-800 text-slate-300 p-8 rounded-xl leading-relaxed">
+                <p class="mb-4">
+                    Возвращение в соревновательный процесс после атипичной пневмонии (ФЖЕЛ 72%) и применения левофлоксацина (FQAD) — комплексная задача. Сформированная беговая база (980 км) и опыт велотренировок (565 км) позволили разработать ортопедически безопасную стратегию.
+                </p>
+                <p>
+                    Архитектура 24-недельной стратегии базируется на смещении начального объема в сторону велосипеда, агрессивной нутрицевтической поддержке, PEP-терапии для легких и ультра-консервативном возвращении к бегу. Скрупулезное следование плану обеспечит безопасный выход на старт.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-slate-500 text-sm">
+        <p>Медицинский консилиум &copy; 2026. Данный отчет носит аналитический характер.</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        // Tab functionality
+        function switchTab(tabId) {
+            // Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => {
+                c.classList.remove('block', 'fade-in');
+                c.classList.add('hidden');
+            });
+            
+            // Show target
+            const target = document.getElementById(tabId);
+            target.classList.remove('hidden');
+            target.classList.add('block', 'fade-in');
+
+            // Update buttons
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => {
+                b.classList.remove('tab-active');
+                if(b.getAttribute('onclick').includes(tabId)) {
+                    b.classList.add('tab-active');
+                }
+            });
+        }
+
+        // Mobile Menu Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

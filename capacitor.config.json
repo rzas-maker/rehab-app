@@ -1,0 +1,6 @@
+{
+  "appId": "com.rehab.app",
+  "appName": "Реабилитация",
+  "webDir": "public",
+  "bundledWebRuntime": false
+}
